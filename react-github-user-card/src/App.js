@@ -1,21 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 
-import Card from './Card';
+import UserCard from './UserCard';
 
 class App extends React.Component {
   constructor() {
     super()
     this.state={
-      user: {}
+      user: {},
+      followers: [{}]
     }
   }
 
   componentDidMount() {
-    this.getGitHubCards()
+    this.getGitHubUser()
+    this.getGitHubFollowers()
   }
 
-  getGitHubCards = () => {
+  getGitHubUser = () => {
     axios
       .get(`https://api.github.com/users/roselandroche`)
       .then(res => {
@@ -23,15 +25,28 @@ class App extends React.Component {
           user: res.data
         })
       })
-      
       .catch(err => {
         console.log(err)
       })
   }
   
+  getGitHubFollowers = () => {
+    axios
+      .get('https://api.github.com/users/roselandroche/followers')
+      .then(res => {
+        this.setState({
+          followers: res.data
+        })
+        console.log(this.state.followers)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   render() {
     return (
-      <Card user={this.state.user}/>
+      <UserCard user={this.state.user} followers={this.state.followers} />
     )
   }
 }
