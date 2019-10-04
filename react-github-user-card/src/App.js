@@ -1,12 +1,20 @@
 import React from 'react';
-// import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <p>Hi</p>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state={}
+  }
+
+  componentDidMount() {
+    //axios call here
+  }
+
+  render() {
+    return (
+      <p>Code Here</p>
+    )
+  }
 }
 
 export default App;
