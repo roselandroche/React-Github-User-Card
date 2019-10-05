@@ -5,8 +5,8 @@ const Followers = props => {
         <div className='followers'>
             <h1>Followers:</h1>
             <>
-                {props.followers.map((follower) => {
-                    return <h2>{follower.login}</h2>
+                {props.followers.map((follower, index) => {
+                    return <li key={index}>{follower.login}</li>
                 })}
             </>
         </div>
