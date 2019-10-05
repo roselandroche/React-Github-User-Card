@@ -46,7 +46,7 @@ class App extends React.Component {
   
   getGitHubFollowers = () => {
     axios
-      .get('https://api.github.com/users/roselandroche/followers')
+      .get(`https://api.github.com/users/${this.state.githubName}/followers`)
       .then(res => {
         this.setState({
           followers: res.data
