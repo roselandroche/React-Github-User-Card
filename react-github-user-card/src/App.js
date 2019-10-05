@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state={
+      githubName: 'roselandroche',
       user: {},
       followers: [{}]
     }
@@ -18,9 +19,20 @@ class App extends React.Component {
     this.getGitHubFollowers()
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(prevState.user !== this.state.user) {
+  //     this.setState({
+  //       user: {},
+  //       followers: [{}]
+  //     })
+  //     this.getGitHubUser()
+  //     this.getGitHubFollowers()
+  //   }
+  // }
+
   getGitHubUser = () => {
     axios
-      .get(`https://api.github.com/users/roselandroche`)
+      .get(`https://api.github.com/users/${this.state.githubName}`)
       .then(res => {
         this.setState({
           user: res.data
@@ -45,10 +57,29 @@ class App extends React.Component {
       })
   }
 
+  handleChange = (event) => {
+    this.setState({
+      githubName: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+
+    this.setState({
+      githubName: ''
+    })
+  }
+
   render() {
     return (
       <>
         <UserCard user={this.state.user} followers={this.state.followers}/>
+
+        <form className='search'>
+          <input type='text' value={this.state.value} placeholder='Enter GitHub Handle'/>
+          <button>Search</button>
+        </form>
       </>
     )
   }
