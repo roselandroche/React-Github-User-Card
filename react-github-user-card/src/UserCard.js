@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Followers from './Followers';
+
 const UserCard = props => {
     return (
         <div className='card'>
@@ -8,6 +10,7 @@ const UserCard = props => {
                 <h1>User: {props.user.name}</h1>
                 <h2>{props.user.bio}</h2>
             </div>
+            <Followers followers={props.followers}/>
         </div>
     )
 }

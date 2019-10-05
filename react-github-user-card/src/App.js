@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 import UserCard from './UserCard';
-import Followers from './Followers';
 
 class App extends React.Component {
   constructor() {
@@ -38,7 +37,6 @@ class App extends React.Component {
         this.setState({
           followers: res.data
         })
-        console.log(this.state.followers)
       })
       .catch(err => {
         console.log(err)
@@ -48,8 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <UserCard user={this.state.user} />
-        <Followers followers={this.state.followers} />
+        <UserCard user={this.state.user} followers={this.state.followers}/>
       </>
     )
   }
